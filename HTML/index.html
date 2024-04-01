@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="../IMG/aes.png" type="image/x-icon" />
+        <title>GR17: AES with JavaScript</title>
+        <script src="../JS/jquery-3.7.1.min.js"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="bgc-image">
+            <img src=" ../IMG/bgc.jpg" alt="" />
+        </div>
+        <div class="container">
+            <h1 class="title">Nhóm 17: Mã hóa AES với JavaScript</h1>
+
+            <div class="option-area">
+                <div class="key-area">
+                    <label for="key" class="mr-2">Khóa: </label>
+                    <input type="text" class="rounded-1" id="key" class="form-control" placeholder="Key" />
+                </div>
+                <div class="">
+                    <label for="length-key" class="mr-2">Độ dài khóa: </label>
+                    <select class="rounded-1" id="length-key" class="form-control" placeholder="Length Key" defaultValue="128">
+                        <option value="128">128 bits</option>
+                        <option value="192">192 bits</option>
+                        <option value="256">256 bits</option>
+                    </select>
+                </div>
+            </div>
+            <div class="encrypt-decrypt">
+                <div class="code-area">
+                    <label for="plain-text"><b>Plain Text:</b></label>
+                    <textarea id="plain-text" class="form-control mb-2 rounded-1 border-1" placeholder="PlainText" rows="5"></textarea>
+                </div>
+                <div class="col-md-2 button-group">
+                    <button id="encryption" class="btn-en">=> Mã hóa</button>
+                    <button id="decryption" class="btn-de">Giải mã <=</button>
+                </div>
+                <div class="code-area">
+                    <label for="cipher-text"><b>Cipher Text:</b></label>
+                    <textarea id="cipher-text" class="form-control mb-2 rounded-1" placeholder="CipherText" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="time-line">
+                <p class="text-danger" id="time">Thời gian xử lý: 0ms</p>
+            </div>
+        </div>
+        <script src="../aes-utils/aes.js"></script>
+        <script>
+            function encrypt(input, key) {
+                return input.split("").reverse().join("");
+            }
+            function decrypt(input, key) {
+                return input.split("").reverse().join("");
+            }
+            $(document).ready(function () {
+                $("#encryption").click(function () {
+                    var plainText = $("#plain-text").val();
+                    var key = $("#key").val();
+                    if (key.length <= 0) {
+                        alert("Chưa nhập khóa");
+                        return;
+                    }
+                    if (plainText.length > 0) {
+                        var key = $("#key").val();
+                        var lengthKey = $("#length-key").val();
+                        var timeStart = performance.now();
+                        var cipherText = Aes.Ctr.encrypt(plainText, key, parseInt(lengthKey));
+                        var timeEnd = performance.now();
+                        $("#time").html("Thời gian xử lý: " + (timeEnd - timeStart) + "ms");
+
+                        $("#cipher-text").val(cipherText);
+                    } else {
+                        alert("Chưa nhập Plain Text");
+                    }
+                });
+
+                $("#decryption").click(function () {
+                    var cipherText = $("#cipher-text").val();
+                    var key = $("#key").val();
+                    if (key.length <= 0) {
+                        alert("Chưa nhập khóa");
+                        return;
+                    }
+                    if (cipherText.length > 0) {
+                        var key = $("#key").val();
+                        var lengthKey = $("#length-key").val();
+                        var timeStart = performance.now();
+                        var plainText = Aes.Ctr.decrypt(cipherText, key, parseInt(lengthKey));
+                        var timeEnd = performance.now();
+                        $("#time").html("Thời gian xử lý: " + (timeEnd - timeStart) + "ms");
+                        $("#plain-text").val(plainText);
+                    } else {
+                        alert("Chưa nhập Cipher Text");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,145 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    color: #fff;
+}
+body {
+    position: relative;
+}
+.bgc-image {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.bgc-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+.container {
+    position: absolute;
+    background-color: #0000001f;
+    z-index: 9;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.title {
+    margin-bottom: 50px;
+    color: #ff5100;
+}
+.option-area {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+.button-group {
+    display: flex;
+    padding-top: 70px;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}
+.button-group button {
+    width: 130px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+}
+.btn-en {
+    background-color: #003cff;
+}
+.btn-de {
+    background-color: green;
+}
+
+.button-group button:hover {
+    opacity: 0.9;
+}
+
+.option-area > div {
+    margin-right: 20px;
+}
+#key {
+    width: 200px;
+    height: 35px;
+    padding: 3px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid #a0a0a0;
+}
+select {
+    height: 35px;
+    border-radius: 8px;
+}
+.key-area {
+    position: relative;
+}
+
+.encrypt-decrypt {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 20px;
+    width: 100%;
+}
+.code-area {
+    width: 40%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.code-area > label {
+    margin-bottom: 5px;
+}
+.code-area > textarea {
+    width: 100%;
+    height: 200px;
+    resize: vertical;
+    padding: 8px;
+    font-size: 17px;
+    font-family: monospace;
+    border-radius: 8px;
+}
+textarea:focus,
+input:focus,
+select:focus {
+    border: 1px solid #00ff00 !important;
+    box-shadow: 0 0 5px 0px #00ff00;
+    outline: none;
+}
+.time-line {
+    width: 100%;
+    margin-top: 30px;
+}
+.time-line p {
+    color: #ffd000;
+}
+textarea,
+input,
+select {
+    background-color: #0000009f;
+}
