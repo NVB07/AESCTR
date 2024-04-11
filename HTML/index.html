@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="../IMG/aes.png" type="image/x-icon" />
         <title>GR17: AES with JavaScript</title>
-        <script src="../JS/jquery-3.7.1.min.js"></script>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
@@ -13,8 +12,13 @@
             <img src=" ../IMG/bgc.jpg" alt="" />
         </div>
         <div class="container">
-            <h1 class="title">Nhóm 17: Mã hóa AES với JavaScript</h1>
-
+            <h1 class="title">Mã hóa AES với JavaScript</h1>
+            <div class="tabs">
+                <input type="radio" hidden checked name="tabs" id="cipher" onchange="handleTabs()" />
+                <label for="cipher">PlainText</label>
+                <input type="radio" hidden name="tabs" id="files" onchange="handleTabs()" />
+                <label for="files">File</label>
+            </div>
             <div class="option-area">
                 <div class="key-area">
                     <label for="key" class="mr-2">Khóa: </label>
@@ -29,18 +33,34 @@
                     </select>
                 </div>
             </div>
-            <div class="encrypt-decrypt">
-                <div class="code-area">
-                    <label for="plain-text"><b>Plain Text:</b></label>
-                    <textarea id="plain-text" class="form-control mb-2 rounded-1 border-1" placeholder="PlainText" rows="5"></textarea>
+            <div class="handle-file" id="File">
+                <div class="file-area">
+                    <div class="select-file">
+                        <input type="file" id="fileInput" hidden accept=".txt" />
+                        <label for="fileInput">Chọn file </label>
+                        <span id="fileName"></span>
+                    </div>
+                    <div class="col-md-2 button-group1">
+                        <button id="encryption-file" class="btn-en" onclick="createTxtFile('encode')">Mã hóa</button>
+                        <button id="decryption-file" class="btn-de" onclick="createTxtFile('decode')">Giải mã</button>
+                    </div>
+                    <!-- <button onclick="createTxtFile()">Tạo file .txt</button> -->
                 </div>
-                <div class="col-md-2 button-group">
-                    <button id="encryption" class="btn-en">=> Mã hóa</button>
-                    <button id="decryption" class="btn-de">Giải mã <=</button>
-                </div>
-                <div class="code-area">
-                    <label for="cipher-text"><b>Cipher Text:</b></label>
-                    <textarea id="cipher-text" class="form-control mb-2 rounded-1" placeholder="CipherText" rows="5"></textarea>
+            </div>
+            <div id="Text">
+                <div class="encrypt-decrypt">
+                    <div class="code-area">
+                        <label for="plain-text"><b>Plain Text:</b></label>
+                        <textarea id="plain-text" class="form-control mb-2 rounded-1 border-1" placeholder="PlainText" rows="5"></textarea>
+                    </div>
+                    <div class="col-md-2 button-group">
+                        <button id="encryption-text" class="btn-en">=> Mã hóa</button>
+                        <button id="decryption-text" class="btn-de">Giải mã <=</button>
+                    </div>
+                    <div class="code-area">
+                        <label for="cipher-text"><b>Cipher Text:</b></label>
+                        <textarea id="cipher-text" class="form-control mb-2 rounded-1" placeholder="CipherText" rows="5"></textarea>
+                    </div>
                 </div>
             </div>
             <div class="time-line">
@@ -48,55 +68,8 @@
             </div>
         </div>
         <script src="../aes-utils/aes.js"></script>
-        <script>
-            function encrypt(input, key) {
-                return input.split("").reverse().join("");
-            }
-            function decrypt(input, key) {
-                return input.split("").reverse().join("");
-            }
-            $(document).ready(function () {
-                $("#encryption").click(function () {
-                    var plainText = $("#plain-text").val();
-                    var key = $("#key").val();
-                    if (key.length <= 0) {
-                        alert("Chưa nhập khóa");
-                        return;
-                    }
-                    if (plainText.length > 0) {
-                        var key = $("#key").val();
-                        var lengthKey = $("#length-key").val();
-                        var timeStart = performance.now();
-                        var cipherText = Aes.Ctr.encrypt(plainText, key, parseInt(lengthKey));
-                        var timeEnd = performance.now();
-                        $("#time").html("Thời gian xử lý: " + (timeEnd - timeStart) + "ms");
+        <script src="./main.js"></script>
 
-                        $("#cipher-text").val(cipherText);
-                    } else {
-                        alert("Chưa nhập Plain Text");
-                    }
-                });
-
-                $("#decryption").click(function () {
-                    var cipherText = $("#cipher-text").val();
-                    var key = $("#key").val();
-                    if (key.length <= 0) {
-                        alert("Chưa nhập khóa");
-                        return;
-                    }
-                    if (cipherText.length > 0) {
-                        var key = $("#key").val();
-                        var lengthKey = $("#length-key").val();
-                        var timeStart = performance.now();
-                        var plainText = Aes.Ctr.decrypt(cipherText, key, parseInt(lengthKey));
-                        var timeEnd = performance.now();
-                        $("#time").html("Thời gian xử lý: " + (timeEnd - timeStart) + "ms");
-                        $("#plain-text").val(plainText);
-                    } else {
-                        alert("Chưa nhập Cipher Text");
-                    }
-                });
-            });
-        </script>
+        <script></script>
     </body>
 </html>

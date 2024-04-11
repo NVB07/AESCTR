@@ -38,13 +38,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 30px;
 }
 
 .title {
     margin-bottom: 50px;
-    color: #ff5100;
+    color: #fff;
 }
 .option-area {
     display: flex;
@@ -102,8 +101,6 @@ select {
 .encrypt-decrypt {
     display: flex;
     justify-content: center;
-
-    margin-top: 20px;
     width: 100%;
 }
 .code-area {
@@ -142,4 +139,87 @@ textarea,
 input,
 select {
     background-color: #0000009f;
+}
+#Text,
+#File {
+    margin-top: 20px;
+    width: 100%;
+    height: 223px;
+}
+.tabs {
+    width: 300px;
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid #003cff;
+    padding: 3px;
+    border-radius: 99999px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-around;
+}
+
+.tabs label {
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+    transition: all 0.3s ease;
+    color: #808080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+}
+input[type="radio"]:checked + label {
+    background-color: #003cff;
+    color: #fff;
+}
+.file-area {
+    height: 223px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #858585;
+    border-radius: 8px;
+    padding: 15px;
+}
+.select-file {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.select-file label {
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #ffd000;
+    color: black;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.select-file span {
+    font-style: italic;
+    color: #3fe9ff;
+}
+.button-group1 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 30px;
+}
+.button-group1 button {
+    width: 130px;
+    height: 40px;
+    margin-right: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
 }
